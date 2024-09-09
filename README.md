@@ -67,5 +67,5 @@ Seguindo o modelo anterior eu fiz algumas mudanças e adicionei uma função de 
     - Finalmente, exibimos as predições categorizadas.
 
 
-<p>Observação em ambos os caso eu utilizei o https://colab.research.google.com/ para criar e executar meus codigos, recomendo que utilizem caso queiram testar</p>
+<p>Observação: Em ambos os caso eu utilizei o https://colab.research.google.com/ para criar e executar meus codigos, recomendo que utilizem caso queiram testar</p>
 
