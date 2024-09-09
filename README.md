@@ -1,47 +1,36 @@
-RDN_Main.ipynb
+Esse código é uma implementação de um modelo básico de aprendizado de máquina que fiz a partir de uma aula do canal (https://www.youtube.com/@MLparahumanos), e está dividido em algumas partes importantes que vou deixar anotado de uma uma maneira mais simples e direta para facilitar meu estudo e aprendizado:
 
-Esse código é uma implementação básica de uma Rede Neural do zero para ajuste de uma curva linear usando Python e NumPy. 
+1. **Importando as bibliotecas**:
+   - Aqui você está trazendo as bibliotecas utilizadas:
+     - `numpy` para lidar com operações matemáticas e arrays.
+     - `matplotlib` para gerar gráficos.
+   - Aqui, eu defino que o gráfico terá um fundo escuro (`plt.style.use('dark_background'`), o que deixa a visualização mais agradável.
 
-1. **Imports e Configurações Gráficas**:
-   - `import numpy as np`: Importa a biblioteca NumPy, usada para trabalhar com arrays e operações matemáticas.
-   - `import matplotlib.pyplot as plt`: Importa a biblioteca Matplotlib para visualização gráfica.
-   - `plt.style.use('dark_background')` e `plt.rcParams['figure.figsize'] = (10,8)`: Configuram o estilo e o tamanho dos gráficos, usando um fundo escuro para melhor contraste visual.
+2. **Criando o dataset**:
+   - A função `get_linear_curve` serve para gerar uma linha reta com base na fórmula `y = wx + b`. A diferença é que ela adiciona um pouco de "ruído" (aleatoriedade) aos dados, simulando algo mais próximo da realidade.
+   - A variável `x` vai de -10 até 30 (com passo de 0.5), e o `Y` é gerado usando a função acima, com uma inclinação de `1.8` e um ponto inicial `b = 32`. Esse ruído (`noise_scale=2.5`) faz com que os pontos não fiquem exatamente na linha reta, imitando variações que encontramos no mundo real.
 
-2. **Criação do Dataset**:
-   - A função `get_linear_curve(x, w, b=0, noise_scale=0)` gera uma curva linear `y = wx + b` com ruído adicionado. A variável `noise_scale` controla a magnitude desse ruído.
-   - `x = np.arange(-10, 30.1, 0.5)`: Cria uma sequência de valores entre -10 e 30, com incrementos de 0,5, representando a entrada `x` do dataset.
-   - `Y = get_linear_curve(x, 1.8, 32, noise_scale=2.5)`: Gera os valores de `Y` baseados em uma inclinação `w = 1.8` e um intercepto `b = 32`, com ruído para simular variações reais.
+3. **Visualizando os dados**:
+   - Com o `plt.scatter(x, Y)`, é possível desenhar um gráfico de dispersão dos dados gerados, que são as entradas `x` versus as saídas `Y`.
+   - Aqui eu rotulo os eixos, indicando que estamos lidando com algo como graus Celsius (`°C`) e Fahrenheit (`°F`), sugerindo uma relação entre temperatura em diferentes escalas.
 
-3. **Visualização do Dataset**:
-   - `plt.scatter(x, Y)`: Gera um gráfico de dispersão para visualizar o dataset gerado.
-   - `plt.xlabel('°C', fontsize=20)` e `plt.ylabel('°F', fontsize=20)`: Definem os rótulos dos eixos X (temperatura em °C) e Y (temperatura em °F).
+4. **Configurando o modelo**:
+   - inicializa o peso (`w`) com um valor aleatório, e o `b` (bias) começa em zero.
+   - A função `forward` realiza a predição, ou seja, calcula o valor de saída (`y`) a partir dos inputs, pesos e bias: `y = wx + b`.
 
-4. **Inicialização de Pesos e Bias**:
-   - `w = np.random.randn(1)` inicializa o peso `w` com um valor aleatório.
-   - `b = 0` inicializa o bias como zero.
+5. **Calculando o erro**:
+   - A função `mse` (Mean Squared Error) mede o quanto o modelo está errando, comparando as saídas preditas com as reais. Quanto menor esse valor, melhor o modelo está acertando.
 
-5. **Função Feedforward**:
-   - `def forward(inputs, w, b)`: Esta função realiza a predição, calculando `y = w*x + b` para cada entrada.
+6. **Ajustando os parâmetros (Backpropagation)**:
+   - Aqui, o modelo vai "aprender" ajustando o peso `w` e o bias `b` de acordo com o erro. Se o erro for grande, ele faz um ajuste maior; se for pequeno, ajusta menos.
+   - A ideia é que a cada iteração, o modelo vai ficando melhor.
 
-6. **Cálculo da Perda**:
-   - `def mse(Y, y)`: Implementa a função de perda Mean Squared Error (MSE), que calcula a média dos erros quadráticos entre as predições `y` e os valores reais `Y`.
+7. **Treinamento**:
+   - O `model_fit` é onde acontece o aprendizado de verdade. O modelo passa pelos dados várias vezes (no seu caso, 2000 épocas), ajustando os parâmetros a cada rodada.
+   - Você também printa o erro de tempos em tempos (a cada 50 épocas), para ver se o modelo está melhorando.
 
-7. **Backpropagation**:
-   - `def backpropagation(inputs, outputs, targets, w, b, learning_rate)`: Esta função ajusta os pesos (`w`) e o bias (`b`) usando o gradiente descendente. 
-   - Os gradientes `dw` e `db` são calculados a partir da derivada da função de perda em relação a `w` e `b`.
+8. **Exibindo o resultado**:
+   - Após o treinamento, você desenha novamente os pontos reais e sobrepõe a linha ajustada (com o `plt.plot`) em vermelho, para ver visualmente se o modelo se aproximou bem dos dados.
 
-8. **Treinamento do Modelo**:
-   - `def model_fit(inputs, targets, w, b, learning_rate=0.001, epochs=200)`: Esta função treina o modelo ajustando `w` e `b` em múltiplas épocas. A cada época, ela realiza a passagem forward, calcula a perda, e aplica o backpropagation.
-   - A perda é impressa a cada 50 épocas para monitorar o progresso do treinamento.
-
-9. **Execução do Treinamento**:
-   - `x = np.arange(-10,10,2)` define novos valores de entrada.
-   - `w, b = model_fit(x, Y, w, b, learning_rate=0.005, epochs=2000)`: O modelo é treinado por 2000 épocas, com uma taxa de aprendizado de 0.005.
-
-10. **Visualização dos Resultados**:
-   - `plt.scatter(x, Y)` exibe os pontos de dados reais.
-   - `plt.plot(x, get_linear_curve(x, w, b), color='red', lw=3)` sobrepõe a linha ajustada pelo modelo em vermelho, mostrando o quanto a linha predita se ajusta aos dados reais.
-
-### Comentários gerais:
-- Este é um exemplo simples, mas eficaz, de como criar e treinar um modelo linear. 
-- A estrutura é básica e não envolve bibliotecas específicas de Machine Learning como TensorFlow ou PyTorch, o que ajuda a entender os princípios fundamentais por trás do aprendizado de máquina.
+### Resumindo:
+Meu código está criando um modelo que tenta prever uma relação linear (como a conversão de Celsius para Fahrenheit), ajustando um peso e um bias para isso. Ele usa o básico de aprendizado de máquina para ajustar esses parâmetros de forma que a linha se aproxime o máximo possível dos dados reais. E, no final, conseguimos visualizar o quanto o modelo conseguiu se ajustar à realidade.
