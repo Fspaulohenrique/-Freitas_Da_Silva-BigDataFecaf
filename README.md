@@ -36,3 +36,33 @@ Esse código é uma implementação de um modelo básico de aprendizado de máqu
 
 ### Resumindo:
 Meu código está criando um modelo que tenta prever uma relação linear (como a conversão de Celsius para Fahrenheit), ajustando um peso e um bias para isso. Ele usa o básico de aprendizado de máquina para ajustar esses parâmetros de forma que a linha se aproxime o máximo possível dos dados reais. E, no final, conseguimos visualizar o quanto o modelo conseguiu se ajustar à realidade.
+
+---
+
+<h1>RDN_Ativação</h1>
+
+Seguindo o modelo anterior eu fiz algumas mudanças e adicionei uma função de ativação e 
+
+
+### Explicação do Código
+
+
+1. **Função de Ativação**:
+   - A função `activation` categoriza a saída linear em três classes: "Frio", "Agradável" e "Calor" com base em valores de temperatura.
+
+2. **Feedforward**:
+   - A função `forward` calcula a saída linear e aplica a função de ativação para obter categorias.
+
+
+3. **Backpropagation**:
+   - A função `backpropagation` ajusta os pesos e o bias com base no erro calculado, atualizando os parâmetros do modelo para minimizar a perda.
+
+4. **Treinamento do Modelo**:
+   - A função `model_fit` treina o modelo por um número definido de épocas, atualizando os parâmetros em cada iteração e imprimindo a perda a cada 50 épocas.
+
+5. **Predição e Visualização**:
+   - Após o treinamento, usamos o modelo para fazer predições e visualizamos os dados reais, as predições categorizadas e a linha de regressão.
+
+6. **Exibição dos Resultados**:
+    - Finalmente, exibimos as predições categorizadas.
+
