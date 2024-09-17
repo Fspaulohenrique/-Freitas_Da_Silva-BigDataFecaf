@@ -69,3 +69,35 @@ Seguindo o modelo anterior eu fiz algumas mudanças e adicionei uma função de 
 
 <p>Observação: Em ambos os caso eu utilizei o https://colab.research.google.com/ para criar e executar meus codigos, recomendo que utilizem caso queiram testar</p>
 
+---
+<h1>Perceptron_Badminton</h1>
+
+Esse é um codigo mais avançado de Perceptron. O código realiza um processo completo de construção, treinamento e avaliação de um modelo de aprendizado de máquina usando o classificador Naive Bayes Bernoulli, como foi proposto em aula seguindo os passos deste link https://www.linkedin.com/pulse/perceptron-fundamentos-funcionamento-e-aplica%C3%A7%C3%B5es-naomi-lago-/ e realizando pesquisas no site https://www.kaggle.com/. Refiz e comentei o código do (https://github.com/FahadUrRehman07) que pode ser visto a versão original aqui https://www.kaggle.com/code/fahadrehman07/weather-analysis-for-badminton-sport/notebook#notebook-container. Esse conjunto de coisas me ajudou com os estudos e na minha evolução no tema, me dando mais curriosidade de entender mais a respeito do assunto.
+
+<h2>Falando um pouco do código</h2>
+
+1. **Importação de Bibliotecas**:
+   - **Importa** várias bibliotecas necessárias para manipulação de dados (`pandas`, `numpy`), visualização (`matplotlib`, `seaborn`), e aprendizado de máquina (`scipy`, `sklearn`).
+
+2. **Carregamento e Análise Exploratória dos Dados**:
+   - **Carrega** um conjunto de dados de um arquivo CSV para um DataFrame.
+   - **Exibe** as primeiras linhas, colunas e tipos de dados para entender a estrutura do conjunto de dados.
+   - **Calcula** estatísticas descritivas para colunas categóricas e verifica se há valores ausentes.
+   - **Visualiza** a distribuição das variáveis categóricas usando gráficos de barras.
+
+3. **Preparação dos Dados**:
+   - **Codifica** variáveis categóricas em variáveis binárias (one-hot encoding) para tornar os dados compatíveis com algoritmos de aprendizado de máquina.
+   - **Divide** o conjunto de dados em conjuntos de treinamento e teste, com 20% dos dados reservados para teste.
+
+4. **Treinamento do Modelo**:
+   - **Cria** e **treina** um classificador Naive Bayes Bernoulli com o conjunto de dados de treinamento.
+
+5. **Avaliação do Modelo**:
+   - **Faz previsões** sobre o conjunto de teste usando o modelo treinado.
+   - **Calcula** várias métricas de desempenho do modelo, incluindo acurácia, precisão, recall e F1 score.
+   - **Gera** e **exibe** uma matriz de confusão para avaliar o desempenho do modelo de forma mais detalhada.
+
+6. **Visualização da Matriz de Confusão**:
+   - **Cria** um heatmap para a matriz de confusão, que visualiza a performance do classificador, mostrando como ele classificou corretamente e incorretamente as amostras.
+
+**Resumo**: O código cobre todo o processo de pré-processamento de dados, treinamento de um modelo de aprendizado de máquina, avaliação de seu desempenho e visualização dos resultados. Ele demonstra como transformar dados categóricos, treinar um classificador, e usar métricas e gráficos para avaliar a eficácia do modelo.
